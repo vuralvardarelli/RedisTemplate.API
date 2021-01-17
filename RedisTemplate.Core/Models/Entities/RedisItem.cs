@@ -8,6 +8,6 @@ namespace RedisTemplate.Core.Models.Entities
     {
         public string Key { get; set; }
 
-        public object Value { get; set; }
+        public string Value { get; set; }
     }
 }

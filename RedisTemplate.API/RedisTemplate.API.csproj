@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\RedisTemplate.Core\RedisTemplate.Core.csproj" />
     <ProjectReference Include="..\RedisTemplate.Infrastructure\RedisTemplate.Infrastructure.csproj" />
   </ItemGroup>
