@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+    redisdb:
+        container_name: redisdb
+        restart: always
+        ports:
+            - "6379:6379"
+
+    redistemplate.api:
+        container_name: redistemplateapi
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - "AppSettings:RedisUrl=redisdb:6379"
+        depends_on:
+            - redisdb
+        volumes:
+            - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+            - ${HOME}/.aspnet/https:/root/.aspnet/https/
+        ports:
+            - "8001:80"
