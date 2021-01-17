@@ -7,6 +7,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RedisTemplate.Core.Models.Common;
+using RedisTemplate.Infrastructure.Data;
+using RedisTemplate.Infrastructure.Data.Interfaces;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +32,14 @@ namespace RedisTemplate.API
             AppSettings appSettings = new AppSettings();
             Configuration.GetSection("AppSettings").Bind(appSettings);
             services.AddSingleton<AppSettings>(appSettings);
+
+            services.AddSingleton<ConnectionMultiplexer>(sp =>
+            {
+                var configuration = ConfigurationOptions.Parse(appSettings.RedisUrl, true);
+                return ConnectionMultiplexer.Connect(configuration);
+            });
+
+            services.AddTransient<ICacheContext, CacheContext>();
 
             services.AddMvc().AddNewtonsoftJson();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
