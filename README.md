@@ -9,7 +9,6 @@ If you want to start app on Docker ;
 
 If you want to start project on Visual Studio 2019
 1. Please pull redis docker image on 6379 port and run it.
-2. Just select RedisTemplate.API project and hit F5.
-3. If you want to go through swagger just type "/swagger" end of the route on your browser.
+2. Just select RedisTemplate.API project and hit F5. Swagger will be automaticly init for your use.
 
 ENJOY!
