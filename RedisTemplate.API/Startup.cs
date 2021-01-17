@@ -9,6 +9,8 @@ using Microsoft.OpenApi.Models;
 using RedisTemplate.Core.Models.Common;
 using RedisTemplate.Infrastructure.Data;
 using RedisTemplate.Infrastructure.Data.Interfaces;
+using RedisTemplate.Infrastructure.Services;
+using RedisTemplate.Infrastructure.Services.Interfaces;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -40,6 +42,7 @@ namespace RedisTemplate.API
             });
 
             services.AddTransient<ICacheContext, CacheContext>();
+            services.AddScoped<ICacheService, RedisCacheService>();
 
             services.AddMvc().AddNewtonsoftJson();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
