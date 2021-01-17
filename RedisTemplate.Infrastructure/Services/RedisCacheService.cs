@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using RedisTemplate.Infrastructure.Data;
+using RedisTemplate.Infrastructure.Data.Interfaces;
 using RedisTemplate.Infrastructure.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,9 +10,9 @@ namespace RedisTemplate.Infrastructure.Services
 {
     public class RedisCacheService : ICacheService
     {
-        private CacheContext _context;
+        private ICacheContext _context;
 
-        public RedisCacheService(CacheContext context)
+        public RedisCacheService(ICacheContext context)
         {
             _context = context;
         }

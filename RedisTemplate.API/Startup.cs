@@ -35,13 +35,7 @@ namespace RedisTemplate.API
             Configuration.GetSection("AppSettings").Bind(appSettings);
             services.AddSingleton<AppSettings>(appSettings);
 
-            services.AddSingleton<ConnectionMultiplexer>(sp =>
-            {
-                var configuration = ConfigurationOptions.Parse(appSettings.RedisUrl, true);
-                return ConnectionMultiplexer.Connect(configuration);
-            });
-
-            services.AddTransient<ICacheContext, CacheContext>();
+            services.AddScoped<ICacheContext, CacheContext>();
             services.AddScoped<ICacheService, RedisCacheService>();
 
             services.AddMvc().AddNewtonsoftJson();

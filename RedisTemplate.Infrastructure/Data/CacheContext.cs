@@ -1,4 +1,5 @@
-﻿using RedisTemplate.Infrastructure.Data.Interfaces;
+﻿using RedisTemplate.Core.Models.Common;
+using RedisTemplate.Infrastructure.Data.Interfaces;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,15 @@ namespace RedisTemplate.Infrastructure.Data
 {
     public class CacheContext : ICacheContext
     {
-        private readonly ConnectionMultiplexer _redisConnection;
+        private ConnectionMultiplexer _multiplexer;
 
-        public CacheContext(ConnectionMultiplexer redisConnection)
+        private AppSettings _settings;
+
+        public CacheContext(AppSettings settings)
         {
-            _redisConnection = redisConnection;
-            Redis = redisConnection.GetDatabase();
+            _settings = settings;
+            _multiplexer = ConnectionMultiplexer.Connect(_settings.RedisUrl);
+            Redis = _multiplexer.GetDatabase();
         }
 
         public IDatabase Redis { get; }
