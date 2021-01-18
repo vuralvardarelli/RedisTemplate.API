@@ -1,5 +1,5 @@
 # RedisTemplate.API
-## Redis Template API Structure with .NET 5 and Docker
+## Redis Template API Structure with .NET 5 and Docker. Simple async CRUD operations
 
 Steps: 
 
